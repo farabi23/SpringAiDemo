@@ -3,12 +3,15 @@ package com.ai.SpringAiDemo;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.ai.image.ImageResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class GenAIController {
@@ -37,11 +40,16 @@ public class GenAIController {
     }
 
     @GetMapping("generate-image")
-    public void generateImages(HttpServletResponse response, @RequestParam String prompt) throws IOException {
+    public ResponseEntity<Map<String, String>> generateImages(@RequestParam String prompt) {
+        // Generate the image URL
         ImageResponse imageResponse = imageService.generateImage(prompt);
         String imageUrl = imageResponse.getResult().getOutput().getUrl();
 
-        response.sendRedirect(imageUrl);
+        // Return the image URL as JSON
+        Map<String, String> response = new HashMap<>();
+        response.put("imageUrl", imageUrl);
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("recipe-creator")

@@ -3,15 +3,17 @@ services:
   frontend:
     build:
       context: ./spring-ai-react-app
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.frontend
     ports:
-      - "3000:3000"
+      - "3000:80" # Maps the host's port 3000 to Nginx's port 80 in the container
     depends_on:
       - backend
+    restart: unless-stopped
 
   backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.backend
     ports:
-      - "8080:8080"
+      - "8080:8080" # Keeps backend exposed on port 8080
+    restart: unless-stopped

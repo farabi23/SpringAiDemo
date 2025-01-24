@@ -4,13 +4,13 @@ FROM node:20-alpine as build
 WORKDIR /app
 
 
-COPY spring-ai-react-app/package*.json ./
+COPY package*.json ./
 
 
 RUN npm install
 
 #
-COPY spring-ai-react-app/ ./
+COPY . .
 
 
 RUN npm run build

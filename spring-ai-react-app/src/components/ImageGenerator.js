@@ -7,7 +7,7 @@ function ImageGenerator() {
   const generateImage = async () => {
     try {
       const response = await fetch(
-        `http://backend:8080/generate-image?prompt=${prompt}`,
+        `http://localhost:8080/generate-image?prompt=${prompt}`,
         {
           credentials: "include",
           method: "GET"

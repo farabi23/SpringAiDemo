@@ -23,11 +23,56 @@ The repository is structured as follows:
 
 ```
 SpringAiDemo/
-├── spring-ai-react-app/   # Frontend application built with React.js
-├── src/                   # Backend Spring Boot application source code
-├── Dockerfile.backend     # Dockerfile for the backend
-├── Dockerfile.frontend    # Dockerfile for the frontend
-├── docker-compose.yml     # Docker Compose file for containerized deployment
+├── spring-ai-react/     # Frontend application on React.js
+│   ├── node_modules
+│   ├── public/
+│   │   ├── favicon.icon
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── ChatComponent.js
+│   │   │   ├── ImageGenerator.js
+│   │   │   └── RecipeGenerator.js
+│   │   ├── app.css
+│   │   ├── app.js
+│   │   ├── app.test.js
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── logo.svg
+│   │   ├── reportWebVitals.js
+│   │   └── setupTests.js
+│   ├── .dockerignore
+│   ├── .dockerfile.frontend
+│   ├── package.json
+│   └── package-lock.json
+├── src/          # Backend Java Spring boot
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── ai/
+│   │   │           └── SpringAiDemo/
+│   │   │               ├── ChatService
+│   │   │               ├── DebugController
+│   │   │               ├── GenAIController
+│   │   │               ├── ImageService
+│   │   │               ├── RecipeService
+│   │   │               ├── SpringAiDemoApplication
+│   │   │               └── WebConfig
+│   │   └── resources/
+│   │       ├── static
+│   │       ├── templates
+│   │       └── application.properties.yml     # Open Ai API key
+│   └── test
+├── target
+├── .dockerignore
+├── .dockercompose
+├── .dockerfile.backend
+├── mvnw
+└── pom.xml
 ```
 
 ---
@@ -123,8 +168,8 @@ For Docker deployments, create a `.env` file in the root directory with this var
 ## Additional Notes
 
 1. **API Endpoints**:
-   - **GET** `/generate-text?prompt=your_prompt`: Generates text based on the prompt.
-   - **GET** `/generate-recipe`: Creates a recipe based on query parameters.
+   - **GET** `/ask-ai?prompt=your_prompt`: Generates text based on the prompt.
+   - **GET** `/recipe-creator?ingredients=your_prompt&cuisine=your_prompt&dietary_restrictions=your_prompt`: Creates a recipe based on query parameters. Cuisine & Dieatary Restrictions are optional
    - **GET** `/generate-image?prompt=your_prompt`: Generates an image based on the prompt.
 
 2. **Frontend Configuration**:
